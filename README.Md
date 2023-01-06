@@ -1,26 +1,15 @@
 # Requisitos
 
 - Geral
-    - [ ]  A porta utilizada pelo seu servidor deve ser a 5000 (isso facilita nossa avaliação 🙂)
-    - [ ]  Versionamento usando Git é obrigatório, crie um **repositório público** no seu perfil do GitHub
-    - [ ]  Faça commits a cada funcionalidade implementada
-    - [ ]  Adicione o código que inicia o servidor em `src/app.js`
-    - [ ]  Adicione um script no package.json para iniciar o servidor rodando `npm run start` como no exemplo abaixo
-        
-        ```json
-        // package.json
-        {
-          //...
-          "scripts": {
-            //...
-            "start": "node ./src/app.js"
-          }
-        }
-        ```
-        
+    - [x]  A porta utilizada pelo seu servidor deve ser a 5000 (isso facilita nossa avaliação 🙂)
+    - [x]  Versionamento usando Git é obrigatório, crie um **repositório público** no seu perfil do GitHub
+    - [x]  Faça commits a cada funcionalidade implementada
+    - [x]  Adicione o código que inicia o servidor em `src/app.js`
+    - [x]  Adicione um script no package.json para iniciar o servidor rodando `npm run start` como no exemplo abaixo
+       
 - Armazenamento de dados
-    - [ ]  Para persistir os dados (usuários e tweets), utilize variáveis globais em memória
-    - [ ]  O formato de um **usuário** deve ser:
+    - [x]  Para persistir os dados (usuários e tweets), utilize variáveis globais em memória
+    - [x]  O formato de um **usuário** deve ser:
         
         ```jsx
         {
@@ -29,7 +18,7 @@
         }
         ```
         
-    - [ ]  O formato de um **tweet** deve ser:
+    - [x]  O formato de um **tweet** deve ser:
         
         ```jsx
         {
@@ -39,7 +28,7 @@
         ```
         
 - **POST** `/sign-up`
-    - [ ]  Deve receber (pelo body da request), um parâmetro **username** e um **avatar**, contendo o nome do username do usuário e a sua foto de avatar:
+    - [x]  Deve receber (pelo body da request), um parâmetro **username** e um **avatar**, contendo o nome do username do usuário e a sua foto de avatar:
         
         ```jsx
         {
@@ -48,11 +37,11 @@
         }
         ```
         
-    - [ ]  Salvar esse usuário num array de usuários do servidor
-    - [ ]  Por fim, retornar a mensagem `“OK”`
+    - [x]  Salvar esse usuário num array de usuários do servidor
+    - [x]  Por fim, retornar a mensagem `“OK”`
 - **POST** `/tweets`
     - [ ]  Se o usuário não estiver cadastrado (username não fez sign-up anteriormente), deve retornar a mensagem `“UNAUTHORIZED”`
-    - [ ]  Deve receber (pelo body da request), os parâmetros `username` e `tweet`:
+    - [x]  Deve receber (pelo body da request), os parâmetros `username` e `tweet`:
         
         ```jsx
         {
@@ -61,10 +50,10 @@
         }
         ```
         
-    - [ ]  Salvar esse tweet num array de tweets do servidor
-    - [ ]  Por fim, retornar a mensagem `“OK”`
+    - [x]  Salvar esse tweet num array de tweets do servidor
+    - [x]  Por fim, retornar a mensagem `“OK”`
 - **GET** `/tweets`
-    - [ ]  Retornar os 10 últimos tweets publicados
+    - [x]  Retornar os 10 últimos tweets publicados
         
         ```jsx
         [
