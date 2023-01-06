@@ -21,11 +21,11 @@ server.get("/tweets", (request, response) => {
     tweets.length = 10
   }
 
-  res.send(tweets)
+  response.send(tweets)
   tweets.reverse()
 })
 
-server.post('/tweets', (req, res) => {
+server.post('/tweets', (request, response) => {
   const tweet =
   {
     username: "",
@@ -33,18 +33,18 @@ server.post('/tweets', (req, res) => {
     tweet: ""
   }
 
-  tweet.username = req.body.username
+  tweet.username = request.body.username
   tweet.avatar = users[users.length - 1].avatar
-  tweet.tweet = req.body.tweet
+  tweet.tweet = request.body.tweet
 
   tweets.push(tweet);
-  res.send("Post");
+  response.send("Post");
 })
 
-server.post('/sign-up', (req, res) => {
-  const people = req.body
+server.post('/sign-up', (request, response) => {
+  const people = request.body
   users.push(people)
-  res.send(people)
+  response.send(people)
 
-  //res.send("Save info")
+  //response.send("Save info")
 })
