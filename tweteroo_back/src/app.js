@@ -15,8 +15,14 @@ server.get("/tweets", (request, response) => {
   response.send(users)
 })
 
-server.post('/pessoas', (req, res) => {
+server.post('/tweets', (req, res) => {
   const pessoa = req.body
   users.push(pessoa)
   res.send(pessoa)
-});
+})
+
+server.post('/sign-up', (req, res) => {
+  const pessoa = req.body
+  users.push(pessoa)
+  res.send(pessoa)
+})
