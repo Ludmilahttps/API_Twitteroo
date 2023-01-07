@@ -29,6 +29,7 @@ server.get("/tweets", (request, response) => {
 //salva os tweets
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
+  const { user } = request.headers
   const tweet =
   {
     username: "",
@@ -41,12 +42,26 @@ server.post('/tweets', (request, response) => {
   tweet.tweet = request.body.tweet
 
   if (!tweet.username || !tweet.avatar || !tweet.tweet) {
-    return res.status(422).send("Unprocessable Entity")
+    return response.status(422).send("Unprocessable Entity")
   }
 
-  tweets.push(tweet)
-  response.sendStatus(201)
-  //response.send("Post")  
+  if (user) {
+    const userRegistered = users.find(item => item === user)
+
+    if (userRegistered) {
+      tweets.push({ username: user, tweet: tweet.tweet })
+      return response.status(201).send("OK")
+    }
+    return response.status(401).send("UNAUTHORIZED")
+  }
+
+  if (users.find(item => item === tweet.username)) {
+    tweets.push(tweet)
+    return response.status(201).send("OK")
+  }
+
+  return response.status(401).send("UNAUTHORIZED")
+
 })
 
 //faz login
@@ -54,9 +69,9 @@ server.post('/sign-up', (request, response) => {
   console.log("post sign-up")
   const people = request.body
   if (people === '') {
-	  response.status(422).send('Unprocessable Entity')
+    response.status(422).send('Unprocessable Entity')
     return;
-	}
+  }
   users.push(people)
   response.sendStatus(201)
 })
