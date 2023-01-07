@@ -29,9 +29,15 @@ server.get("/tweets", (request, response) => {
 //salva os tweets
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
-  const tweet = []
+  const tweet =
+  {
+    username: "",
+    avatar: "",
+    tweet: ""
+  }
 
   tweet.username = request.headers.user
+  tweet.avatar = users[users.length - 1].avatar
   tweet.tweet = request.body.tweet
 
 	if (!users.filter((user) => user.username === tweet.username)) {
