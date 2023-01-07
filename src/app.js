@@ -13,6 +13,7 @@ server.listen(PORT, () => {
   console.log('Im a server')
 })
 
+//passa os tweets
 server.get("/tweets", (request, response) => {
   console.log("get tweets")
   tweets.reverse()
@@ -25,6 +26,7 @@ server.get("/tweets", (request, response) => {
   tweets.reverse()
 })
 
+//salva os tweets
 server.post('/tweets', (request, response) => {
   const tweet =
   {
@@ -41,10 +43,13 @@ server.post('/tweets', (request, response) => {
   response.send("Post");
 })
 
+//faz login
 server.post('/sign-up', (request, response) => {
   const people = request.body
+  if (people === '') {
+	  response.status(422).send('Preencha seu nome!')
+    return;
+	}
   users.push(people)
-  response.send(people)
-
-  //response.send("Save info")
+  response.sendStatus(201)
 })
