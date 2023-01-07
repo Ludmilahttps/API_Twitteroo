@@ -45,7 +45,8 @@ server.post('/tweets', (request, response) => {
   }
 
   tweets.push(tweet)
-  response.send("Post")  
+  response.sendStatus(201)
+  //response.send("Post")  
 })
 
 //faz login
