@@ -40,7 +40,9 @@ server.post('/tweets', (request, response) => {
   tweet.avatar = users[users.length - 1].avatar
   tweet.tweet = request.body.tweet
 
-	if (!users.filter((user) => user.username === tweet.username)) {
+  const user = users.find(user => user.username === tweet.username)
+
+	if (!user) {
 		return response.status(401).send("UNAUTHORIZED")
 	}
 
