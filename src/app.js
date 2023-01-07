@@ -48,6 +48,10 @@ server.post('/tweets', (request, response) => {
     return response.status(422).send("Unprocessable Entity")
   }
 
+  if (!users.find(user => user.username === tweet.username)) {
+    return response.sendStatus(401)
+  }
+
   tweets.push(tweet)
   response.status(200).send("OK")  
 })
