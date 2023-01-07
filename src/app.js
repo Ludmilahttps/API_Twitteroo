@@ -49,7 +49,7 @@ server.post('/tweets', (request, response) => {
   }
 
   if (!users.find(user => user.username === tweet.username)) {
-    return response.sendStatus(401)
+    return response.status(401).send("UNAUTHORIZED")
   }
 
   tweets.push(tweet)
