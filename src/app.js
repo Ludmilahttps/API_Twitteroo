@@ -28,6 +28,7 @@ server.get("/tweets", (request, response) => {
 
 //salva os tweets
 server.post('/tweets', (request, response) => {
+  console.log("post tweets")
   const tweet =
   {
     username: "",
@@ -39,15 +40,20 @@ server.post('/tweets', (request, response) => {
   tweet.avatar = users[users.length - 1].avatar
   tweet.tweet = request.body.tweet
 
-  tweets.push(tweet);
-  response.send("Post");
+  if (!tweet.username || !tweet.avatar || !tweet.tweet) {
+    return res.status(422).send("Unprocessable Entity")
+  }
+
+  tweets.push(tweet)
+  response.send("Post")  
 })
 
 //faz login
 server.post('/sign-up', (request, response) => {
+  console.log("post sign-up")
   const people = request.body
   if (people === '') {
-	  response.status(422).send('Preencha seu nome!')
+	  response.status(422).send('Unprocessable Entity')
     return;
 	}
   users.push(people)
