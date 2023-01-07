@@ -49,7 +49,7 @@ server.post('/tweets', (request, response) => {
     const userRegistered = users.find(item => item === user)
 
     if (userRegistered) {
-      tweets.push({ username: user, tweet: tweet.tweet })
+      tweets.push({ username: user, avatar: users[users.length - 1].avatar, tweet: tweet.tweet })
       return response.status(201).send("OK")
     }
     return response.status(401).send("UNAUTHORIZED")
