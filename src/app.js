@@ -48,7 +48,7 @@ server.post('/tweets', (request, response) => {
     return response.status(422).send("Unprocessable Entity")
   }
 
-  if (!users.find(user => user.username === tweet.username)) {
+  if (!users.find(user => user === tweet.username)) {
     return response.status(401).send("UNAUTHORIZED")
   }
 
