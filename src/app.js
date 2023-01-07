@@ -36,7 +36,7 @@ server.post('/tweets', (request, response) => {
     tweet: ""
   }
 
-  tweet.username = request.headers.user
+  tweet.username = request.headers.username
   tweet.avatar = users[users.length - 1].avatar
   tweet.tweet = request.body.tweet
 
