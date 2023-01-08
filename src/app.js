@@ -30,7 +30,7 @@ server.get("/tweets", (request, response) => {
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
   if (!request.body.username || !request.body.tweet || typeof request.body.tweet !== 'string') {
-    return response.status(CODE_BAD_REQUEST).send('Todos os campos são obrigatórios!');
+    return response.status(401).send('Todos os campos são obrigatórios!');
   }
 
   const user = request.body.username;
@@ -42,9 +42,9 @@ server.post('/tweets', (request, response) => {
 
   tweets.push(request.body);
 
-  response.status(CODE_CREATED).send(request.body);
+  response.status(201).send(request.body);
   response.send('OK');
-  
+
   /*
   const newTweet =
   {
