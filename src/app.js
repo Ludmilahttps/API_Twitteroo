@@ -52,7 +52,7 @@ server.post('/tweets', (request, response) => {
     return response.status(401).send('UNAUTHORIZED')
   }
 
-  tweets.push(newTweet)
+  tweets.push(request.body)
 
   response.status(201).send('OK');
 
