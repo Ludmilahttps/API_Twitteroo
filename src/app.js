@@ -30,22 +30,21 @@ server.get("/tweets", (request, response) => {
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
 
-  if (!request.body.username || !request.body.tweet || typeof request.body.tweet !== 'string') {
-    return response.status(401).send('Unauthorized')
-  }
-
-  const user = request.body.username;
-  const isSignedUp = users.some(({ username }) => username === user);
-
-  if (!isSignedUp) {
-    return response.status(401).send('Unauthorized')
-  }
-
   let newTweet =
   {
     username: "",
     avatar: "",
     tweet: ""
+  }
+
+  if (!request.body.username || !request.body.tweet || typeof request.body.tweet !== 'string') {
+    return response.status(401).send('Unauthorized')
+  }
+
+  const isTrue = users.some(({ username }) => username === request.body.username);
+
+  if (!isTrue) {
+    return response.status(401).send('Unauthorized')
   }
 
   newTweet.username = user
@@ -54,29 +53,6 @@ server.post('/tweets', (request, response) => {
 
   tweets.push(newTweet)
   response.status(201).send('OK')
-
-  /*
-  const newTweet =
-  {
-    username: "",
-    avatar: "",
-    tweet: ""
-  }
-
-  newTweet.username = request.headers.user
-  newTweet.avatar = users[users.length - 1].avatar
-  newTweet.tweet = request.body.tweet
-
-	if (!users.find((user) => user.username === newTweet.username)) {
-		return response.status(401).send("UNAUTHORIZED")
-	}
-
-  if (!newTweet.username || !newTweet.avatar || !newTweet.tweet || typeof newTweet.username !== 'string' || typeof newTweet.tweet !== 'string') {
-    return response.status(404).send("Unprocessable Entity")
-  }
-
-  tweets.push(newTweet)
-  response.sendStatus(201)*/
 })
 
 //faz login
