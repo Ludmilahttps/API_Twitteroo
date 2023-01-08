@@ -41,11 +41,12 @@ server.post('/tweets', (request, response) => {
   newTweet.avatar = users[users.length - 1].avatar
   newTweet.tweet = request.body.tweet 
 
-  if (!request.body.username || !request.body.tweet || typeof request.body.tweet !== 'string') {
+  if (!newTweet.username || !newTweet.tweet|| typeof newTweet.tweet !== 'string') {
     return response.status(401).send('Unauthorized')
   }
 
-  const isSignedUp = users.some(({ username }) => username === newTweet.username)
+  const user = request.body.username;
+  const isSignedUp = users.some(({ username }) => username === user);
 
   if (!isSignedUp) {
     return response.status(401).send('UNAUTHORIZED')
