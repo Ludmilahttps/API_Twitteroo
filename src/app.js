@@ -29,20 +29,31 @@ server.get("/tweets", (request, response) => {
 //salva os tweets
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
+
   if (!request.body.username || !request.body.tweet || typeof request.body.tweet !== 'string') {
-    return response.status(401).send('Todos os campos são obrigatórios!');
+    return response.status(401).send('Unauthorized')
   }
 
   const user = request.body.username;
   const isSignedUp = users.some(({ username }) => username === user);
 
   if (!isSignedUp) {
-    return response.status(401).send('UNAUTHORIZED');
+    return response.status(401).send('Unauthorized')
   }
 
-  tweets.push(request.body);
+  const newTweet =
+  {
+    username: "",
+    avatar: "",
+    tweet: ""
+  }
 
-  response.status(201).send('OK');
+  newTweet.username = user
+  newTweet.avatar = users[users.length - 1].avatar
+  newTweet.tweet = request.body.tweet
+
+  tweets.push(newTweet)
+  response.status(201).send('OK')
 
   /*
   const newTweet =
