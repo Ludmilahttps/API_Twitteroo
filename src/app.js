@@ -29,26 +29,26 @@ server.get("/tweets", (request, response) => {
 //salva os tweets
 server.post('/tweets', (request, response) => {
   console.log("post tweets")
-  const tweet =
+  const newTweet =
   {
     username: "",
     avatar: "",
     tweet: ""
   }
 
-  tweet.username = request.headers.user
-  tweet.avatar = users[users.length - 1].avatar
-  tweet.tweet = request.body.tweet
+  newTweet.username = request.headers.user
+  newTweet.avatar = users[users.length - 1].avatar
+  newTweet.tweet = request.body.tweet
 
-	if (!users.some((user) => user.username === tweet.username)) {
+	if (!users.some((user) => user.username === newTweet.username)) {
 		return response.status(401).send("UNAUTHORIZED")
 	}
 
-  if (!tweet.username || !tweet.avatar || !tweet.tweet || typeof tweet.username !== 'string' || typeof tweet.tweet !== 'string') {
+  if (!newTweet.username || !newTweet.avatar || !newTweet.tweet || typeof newTweet.username !== 'string' || typeof newTweet.tweet !== 'string') {
     return response.status(404).send("Unprocessable Entity")
   }
 
-  tweets.push(tweet)
+  tweets.push(newTweet)
   response.status(200).send("OK")  
 })
 
