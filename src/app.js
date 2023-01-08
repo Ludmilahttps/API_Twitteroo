@@ -41,11 +41,13 @@ server.post('/tweets', (request, response) => {
   tweet.tweet = request.body.tweet
 
 	if (!users.some((user) => user.username === tweet.username)) {
-		return response.status(401).send("UNAUTHORIZED")
+		response.status(401).send("UNAUTHORIZED")
+    return 
 	}
 
   if (!tweet.username || !tweet.avatar || !tweet.tweet) {
-    return response.status(422).send("Unprocessable Entity")
+    response.status(422).send("Unprocessable Entity")
+    return 
   }
 
   tweets.push(tweet)
