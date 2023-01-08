@@ -41,7 +41,7 @@ server.post('/tweets', (request, response) => {
     return response.status(401).send('Unauthorized')
   }
 
-  const newTweet =
+  let newTweet =
   {
     username: "",
     avatar: "",
