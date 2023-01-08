@@ -41,7 +41,7 @@ server.post('/tweets', (request, response) => {
     return response.status(401).send('Unauthorized')
   }
 
-  const isTrue = users.some(({ username }) => username === request.body.username);
+  const isTrue = users.some(({ username }) => username === request.headers.user);
 
   if (!isTrue) {
     return response.status(401).send('Unauthorized')
