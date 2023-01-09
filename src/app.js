@@ -37,8 +37,8 @@ server.post('/tweets', (request, response) => {
     tweet: ""
   }
 
-  if (!request.headers.user || !request.body.tweet || typeof request.body.tweet !== 'string') {
-    return response.status(401).send('Unauthorized')
+  if (!request.headers.user || !request.body.tweet || typeof request.body.tweet !== 'string' || request.body.tweet === '' ) {
+    return response.sendStatus(400)
   }
 
   if (!users.some(({ username }) => username === request.headers.user)) {
