@@ -57,10 +57,9 @@ server.post('/tweets', (request, response) => {
 server.post('/sign-up', (request, response) => {
   console.log("post sign-up")
   const people = request.body
-  if (people === '') {
-	  response.status(422).send('Unprocessable Entity')
-    return;
-	}
+  if (people === '' || typeof people !== 'string' || !people) {
+    return response.sendStatus(400)
+  }
   users.push(people)
   response.sendStatus(201)
 })
