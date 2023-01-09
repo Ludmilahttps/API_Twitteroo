@@ -57,7 +57,10 @@ server.post('/tweets', (request, response) => {
 server.post('/sign-up', (request, response) => {
   console.log("post sign-up")
   const people = request.body
-  if (people === '' || typeof people !== 'string' || !people) {
+  if (people === '' ) {
+    return response.status(401).send('Unauthorized')
+  }
+  if (people.username === '' || typeof people.username !== 'string' || !people.username || people.avatar === '' || typeof people.avatar !== 'string' || !people.avatar) {
     return response.sendStatus(400)
   }
   users.push(people)
